@@ -16,24 +16,26 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 // ELEMENTOS UI ESPECÍFICOS:
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
-import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { CarteraComponent } from './cartera/cartera.component';
+import { CompraComponent } from './compra/compra.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarteraComponent
+    CarteraComponent,
+    CompraComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,7 @@ import { CarteraComponent } from './cartera/cartera.component';
 
     MatInputModule,MatSelectModule,
     MatButtonModule,MatCheckboxModule,
-
+    MatCardModule,
     MatTableModule,MatBadgeModule,  MatExpansionModule,
     MatSnackBarModule,MatTooltipModule,MatToolbarModule,
     MatInputModule,MatCheckboxModule,

@@ -1,15 +1,18 @@
 <mat-menu #appMenu="matMenu">
-    <button mat-menu-item>Comprar</button>
+    <button mat-menu-item (click)="this.router.navigate(['compra']);">Comprar</button>
     <button mat-menu-item>Vender</button>
 </mat-menu>
   
 <mat-toolbar>
     <mat-toolbar-row>
         <span (click)="this.router.navigate(['']);">{{title}}</span>
-        <button mat-icon-button [matMenuTriggerFor]="appMenu">
-            <mat-icon>more_vert</mat-icon>
-          </button>
-      </mat-toolbar-row>    
+        <span class="example-fill-remaining-space"></span>
+        <span>
+            <button mat-icon-button [matMenuTriggerFor]="appMenu">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </span>
+      </mat-toolbar-row>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
