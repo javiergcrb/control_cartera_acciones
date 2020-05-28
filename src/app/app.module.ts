@@ -20,6 +20,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
@@ -30,12 +31,14 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { CarteraComponent } from './cartera/cartera.component';
 import { CompraComponent } from './compra/compra.component';
+import { VentaComponent } from './venta/venta.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarteraComponent,
-    CompraComponent
+    CompraComponent,
+    VentaComponent
   ],
   imports: [
     BrowserModule,
@@ -44,11 +47,11 @@ import { CompraComponent } from './compra/compra.component';
     FormsModule,MatFormFieldModule, MatIconModule,
 
     MatInputModule,MatSelectModule,
-    MatButtonModule,MatCheckboxModule,
+    MatButtonModule, MatListModule,
     MatCardModule,
     MatTableModule,MatBadgeModule,  MatExpansionModule,
     MatSnackBarModule,MatTooltipModule,MatToolbarModule,
-    MatInputModule,MatCheckboxModule,
+    MatCheckboxModule,
     MatProgressSpinnerModule,MatMenuModule,
   ],
   providers: [],
