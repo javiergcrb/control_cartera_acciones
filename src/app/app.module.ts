@@ -18,6 +18,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
@@ -32,13 +33,15 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { CarteraComponent } from './cartera/cartera.component';
 import { CompraComponent } from './compra/compra.component';
 import { VentaComponent } from './venta/venta.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarteraComponent,
     CompraComponent,
-    VentaComponent
+    VentaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +51,7 @@ import { VentaComponent } from './venta/venta.component';
 
     MatInputModule,MatSelectModule,
     MatButtonModule, MatListModule,
-    MatCardModule,
+    MatCardModule, MatDialogModule,
     MatTableModule,MatBadgeModule,  MatExpansionModule,
     MatSnackBarModule,MatTooltipModule,MatToolbarModule,
     MatCheckboxModule,
