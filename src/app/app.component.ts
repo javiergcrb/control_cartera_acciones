@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule,ActivatedRoute } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { GlobalService } from './services/global/global.service';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -14,12 +15,13 @@ export class AppComponent implements OnInit {
   name:string;
   password:string;
 
-  constructor(public router: Router, private route: ActivatedRoute, public dialog: MatDialog){
+  constructor(public router: Router, private route: ActivatedRoute, public dialog: MatDialog,
+    public global: GlobalService){
   }
 
   ngOnInit(){
     this.router.navigate(['']);
-    if(!this.login){
+    if(!this.global.get_login()){
       this.openDialog();
     }
     else{
@@ -37,9 +39,9 @@ export class AppComponent implements OnInit {
         this.openDialog();
       }
       else{
-        this.name = result.name;
-        this.login = true;
-        console.log(this.name);
+        this.global.set_username(result.name);
+        this.global.set_login(true);
+        console.log(this.global.get_username());
         this.router.navigate(['cartera']);
       }
       

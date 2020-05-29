@@ -4,6 +4,7 @@ import { Paquete } from '../paquete';
 import {MatTable} from '@angular/material/table';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatCardModule} from '@angular/material/card';
+import { GlobalService } from '../services/global/global.service';
 
 
 @Component({
@@ -19,22 +20,16 @@ export class CarteraComponent implements OnInit {
   public displayedColumns: string[] = ['nombre', 'nacciones', 'pcompra','pventa','rentabilidad'];
 
   constructor(public router: Router, public route: ActivatedRoute,
-    private _snackBar: MatSnackBar) {
-      this.acciones = [
-        {id: "ASDIVAJWEJ", compania: "REPSOL", n_acciones: 100, precio_compra: 12.50, precio_venta: 13.00},
-        {id: "IOVAIERNBF", compania: "IBERDROLA", n_acciones: 150, precio_compra: 18.50, precio_venta: 20.00},
-        {id: "BIOWEROENF", compania: "AMAZON", n_acciones: 300, precio_compra: 120.50, precio_venta: 150.00},
-        {id: "VIQPENURQO", compania: "APPLE", n_acciones: 10, precio_compra: 95.50, precio_venta: 90.00}
-      ]; 
+    private _snackBar: MatSnackBar, public global:GlobalService) {
+      this.acciones = global.acciones;
      }
 
   ngOnInit(): void {
+    //console.log(this.global.get_login(), this.global.get_username())
   }
   public getData()
   {
-    
     return this.acciones;
-      
   }
 
   public calcularTotal()
