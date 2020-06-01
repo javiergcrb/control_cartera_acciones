@@ -35,6 +35,8 @@ import { CompraComponent } from './compra/compra.component';
 import { VentaComponent } from './venta/venta.component';
 import { LoginComponent } from './login/login.component';
 
+import { HttpClientModule } from "@angular/common/http";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +48,7 @@ import { LoginComponent } from './login/login.component';
   imports: [
     BrowserModule,
     AppRoutingModule,RouterModule,
+    HttpClientModule,
     BrowserAnimationsModule,FlexLayoutModule,
     FormsModule,MatFormFieldModule, MatIconModule,
 

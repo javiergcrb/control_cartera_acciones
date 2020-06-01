@@ -1,19 +1,19 @@
 <div fxLayout="row" fxLayoutAlign="center">
-<table mat-table [dataSource]="getData()" class="mat-elevation-z8" width="100%" class="container">
+<table mat-table [dataSource]="getData()" class="mat-elevation-z8" width="100%" class="container" (ngModelChange)="calcularTotal()">
     <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef>Compañía</th>
         <td mat-cell *matCellDef="let element"> {{element.compania}} </td>
     </ng-container>
     <ng-container matColumnDef="nacciones">
         <th mat-header-cell *matHeaderCellDef>En cartera</th>
-        <td mat-cell *matCellDef="let element"> {{element.n_acciones}} acciones </td>
+        <td mat-cell *matCellDef="let element"> {{element.n_acciones}} </td>
     </ng-container>
     <ng-container matColumnDef="pcompra">
-        <th mat-header-cell *matHeaderCellDef>Precio compra</th>
+        <th mat-header-cell *matHeaderCellDef>Precio unitario compra</th>
         <td mat-cell *matCellDef="let element"> {{element.precio_compra | number:'.2-2'}}€ </td>
     </ng-container>
     <ng-container matColumnDef="pventa">
-        <th mat-header-cell *matHeaderCellDef>Precio actual</th>
+        <th mat-header-cell *matHeaderCellDef>Precio unitario actual</th>
         <td mat-cell *matCellDef="let element"> {{element.precio_venta | number:'.2-2'}}€ </td>
     </ng-container>
     <ng-container matColumnDef="rentabilidad">
@@ -25,4 +25,4 @@
 </table>
 </div>
 <br/>
-<label>Rentabilidad total: {{calcularTotal() | number:'.2-2'}}</label>
+<label>Rentabilidad total: {{rentabilidad_total | number:'.2-2'}}€</label>

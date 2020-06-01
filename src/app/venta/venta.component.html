@@ -2,21 +2,21 @@
 <div  fxLayout="row" fxLayoutAlign="center">
 <div fxFlex=66 fxFlexFill fxLayout="column" fxLayoutAlign="center">
 
-<mat-selection-list [multiple]="false">
-    <mat-list-option *ngFor="let accion of acciones">
+<mat-selection-list [multiple]="false" #lista [(ngModel)]="paquete_seleccionado" (click)="actualizarPaquete($event)">
+    <mat-list-option *ngFor="let accion of acciones;" [value]="accion">
       {{accion.compania}}   {{accion.n_acciones}}
     </mat-list-option>
 </mat-selection-list>
 <br/>
 <mat-form-field>
-<input matInput type="number" placeholder="Importe total" [(ngModel)]="operacion.i_total" name="precio"/>
+<input matInput type="number" placeholder="Importe total" [(ngModel)]="operacion.i_total" (change)="comprobar_venta()" name="precio"/>
 </mat-form-field>
 <br/>
 <label type="text" name="fecha">Fecha de la operación: {{reloj | date:'yyyy-MM-dd HH:mm:ss'}}</label>
 
 <div  fxLayout="row" style="margin-top:50px;">
     <div fxFlex fxLayoutAlign="center">
-        <button (click)="aceptar()" mat-flat-button color="primary">Vender</button>
+        <button (click)="aceptar()" mat-flat-button color="primary" [disabled]="disable_confirm_btn">Vender</button>
     </div>
     <div fxFlex fxLayoutAlign="center">
         <button (click)="cancelar()" mat-flat-button color="primary">Cancelar</button>

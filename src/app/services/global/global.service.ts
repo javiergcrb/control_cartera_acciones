@@ -11,14 +11,14 @@ export class GlobalService {
   private usr_id:string;
 
   public acciones:Paquete[] = [
-    {id: "ASDIVAJWEJ", compania: "REPSOL", n_acciones: 100, precio_compra: 12.50, precio_venta: 13.00},
-    {id: "IOVAIERNBF", compania: "IBERDROLA", n_acciones: 150, precio_compra: 18.50, precio_venta: 20.00},
-    {id: "BIOWEROENF", compania: "AMAZON", n_acciones: 300, precio_compra: 120.50, precio_venta: 150.00},
-    {id: "VIQPENURQO", compania: "APPLE", n_acciones: 10, precio_compra: 95.50, precio_venta: 90.00}
+    {id: "ASDIVAJWEJ", compania: "REP.MC", n_acciones: 100, precio_compra: 12.50, precio_venta: 0},
+    {id: "IOVAIERNBF", compania: "IBE.MC", n_acciones: 150, precio_compra: 18.50, precio_venta: 0},
+    {id: "BIOWEROENF", compania: "AMZN", n_acciones: 300, precio_compra: 120.50, precio_venta: 0},
+    {id: "VIQPENURQO", compania: "NFLX", n_acciones: 10, precio_compra: 95.50, precio_venta: 0}
   ]; 
 
   constructor() {
-    this.login = false;
+    this.login = true; //Poner false para activar el login
     this.usr_id = '';
     this.usr_name = '';
   }
