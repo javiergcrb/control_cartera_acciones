@@ -59,7 +59,6 @@ export class CarteraComponent implements OnInit {
 
   public getData()
   {
-    this.calcularTotal();
     return this.global.paquetes;
   }
 

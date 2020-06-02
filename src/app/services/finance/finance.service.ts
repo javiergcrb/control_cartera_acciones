@@ -11,6 +11,12 @@ export class MarketData{
   l:number;
 }
 
+export class MarketSymbol{
+  description:string;
+  displaySymbol:string;
+  symbol:string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,9 +31,13 @@ export class FinanceService {
   constructor(private http: HttpClient) { }
 
   public get_cotizacion(symbol:string):Promise<MarketData>{
-    let dato;
     let url:string=this.api_cotizaciones+"?symbol="+symbol+"&token="+this.token;
     return this.http.get<MarketData>(url).toPromise();
+  }
+
+  public get_symbols(s:string): Promise<MarketSymbol[]>{
+    let url:string=this.api_simbolos+"?exchange="+s+"&token="+this.token;
+    return this.http.get<MarketSymbol[]>(url).toPromise();
   }
 /*
   get_nombres():Promise<string[]>{

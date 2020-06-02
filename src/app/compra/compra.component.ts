@@ -26,6 +26,10 @@ export class CompraComponent implements OnInit {
 
   public paquete:Paquete;
 
+  mercado:string;
+  symbols: string[] = [];
+  selected:string;
+
   ngOnInit(): void {
 
     this.paquete = new Paquete();
@@ -33,6 +37,16 @@ export class CompraComponent implements OnInit {
     /* Temporizador */
     this.crono=timer(0,1000).subscribe((e)=>{
       this.reloj=Date.now();
+    });
+  }
+
+  actualizar_companias(){
+    this.symbols = [];
+    this.selected = '';
+    this.finService.get_symbols(this.mercado).then(r =>{
+      r.forEach(s =>{
+        this.symbols.push(s.symbol);
+      });
     });
   }
 
@@ -55,9 +69,6 @@ export class CompraComponent implements OnInit {
         }
       })
     }
-
-      
-    //console.log(this.operacion.compania);
   }
 
   ngOnDestroy()

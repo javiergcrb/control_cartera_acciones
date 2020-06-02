@@ -9,19 +9,24 @@
         </mat-panel-title>
     </mat-card-title>
     <div fxLayout="column" fxLayoutAlign="center">
-        <mat-form-field><input matInput type="text" placeholder="Compañía" [(ngModel)]="paquete.compania" name="compania" (change)="actualizar_precio()"/></mat-form-field>    
+        <mat-form-field>
+            <mat-label>Mercado</mat-label>
+            <mat-select [(value)] = "mercado" (selectionChange)="actualizar_companias()">
+              <mat-option value="MC">Español</mat-option>
+              <mat-option value="US">Americano</mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-form-field><mat-label>Compañía</mat-label>
+            <mat-select [(value)] = "paquete.compania" (selectionChange)="actualizar_precio()">
+              <mat-option *ngFor="let symbol of symbols"  [value]="symbol">
+                {{symbol}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>    
         <mat-form-field><input matInput type="number" placeholder="Número de acciones" [(ngModel)]="paquete.n_acciones" name="n_acciones" (change)="actualizar_precio()"/></mat-form-field>
         <label type="text" name="i_total">Importe total: {{paquete.precio_compra * paquete.n_acciones | number:'.2-2'}}€</label>
         <br/>
         <label type="text" name="fecha">Fecha de la operación: {{reloj | date:'yyyy-MM-dd HH:mm:ss'}}</label>
-        <!--mat-form-field>
-            <mat-label>Tipo</mat-label>
-            <mat-select [(ngModel)]="contacto.tipo" name="tipo">
-                <mat-option *ngFor="let tipo of getTipos();let i=index" [value]="i">
-                {{tipo}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field-->
     </div>
 </mat-card>
 
