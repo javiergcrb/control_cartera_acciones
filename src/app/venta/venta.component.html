@@ -9,7 +9,7 @@
 </mat-selection-list>
 <br/>
 <mat-form-field>
-<input matInput type="number" placeholder="Importe total" [(ngModel)]="operacion.i_total" (change)="comprobar_venta()" name="precio"/>
+<input matInput type="number" placeholder="Importe total" [(ngModel)]="importe" (change)="comprobar_venta()" name="precio"/>
 </mat-form-field>
 <br/>
 <label type="text" name="fecha">Fecha de la operación: {{reloj | date:'yyyy-MM-dd HH:mm:ss'}}</label>

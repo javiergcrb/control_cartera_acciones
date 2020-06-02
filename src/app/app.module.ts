@@ -30,12 +30,17 @@ import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 
+// FIREBASE
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
+import { HttpClientModule } from "@angular/common/http";
+
 import { CarteraComponent } from './cartera/cartera.component';
 import { CompraComponent } from './compra/compra.component';
 import { VentaComponent } from './venta/venta.component';
 import { LoginComponent } from './login/login.component';
-
-import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -51,6 +56,9 @@ import { HttpClientModule } from "@angular/common/http";
     HttpClientModule,
     BrowserAnimationsModule,FlexLayoutModule,
     FormsModule,MatFormFieldModule, MatIconModule,
+
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
 
     MatInputModule,MatSelectModule,
     MatButtonModule, MatListModule,

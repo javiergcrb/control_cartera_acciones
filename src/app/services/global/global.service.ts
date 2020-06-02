@@ -1,16 +1,18 @@
 import { Injectable, Attribute } from '@angular/core';
 import { Paquete } from 'src/app/paquete';
+import { Usuario } from 'src/app/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
 
-  private login:boolean;
-  private usr_name:string;
-  private usr_id:string;
+  public login:boolean;
+  public usr:Usuario;
+  public paquetes: Paquete[];
+  //private usr_id:string;
 
-  public acciones:Paquete[] = [
+  private acciones:Paquete[] = [
     {id: "ASDIVAJWEJ", compania: "REP.MC", n_acciones: 100, precio_compra: 12.50, precio_venta: 0},
     {id: "IOVAIERNBF", compania: "IBE.MC", n_acciones: 150, precio_compra: 18.50, precio_venta: 0},
     {id: "BIOWEROENF", compania: "AMZN", n_acciones: 300, precio_compra: 120.50, precio_venta: 0},
@@ -18,32 +20,11 @@ export class GlobalService {
   ]; 
 
   constructor() {
-    this.login = true; //Poner false para activar el login
-    this.usr_id = '';
-    this.usr_name = '';
-  }
-
-  public get_login():boolean{
-    return this.login;
-  }
-
-  public set_login(login:boolean):void{
-    this.login = login;
-  }
-
-  public get_username():string{
-    return this.usr_name;
-  }
-
-  public set_username(name:string):void{
-    this.usr_name = name;
-  }
-
-  public get_userid():string{
-    return this.usr_id;
-  }
-
-  public set_userid(id:string):void{
-    this.usr_id = id;
+    this.login = false; //Poner false para activar el login
+    this.usr = new Usuario();
+    this.usr.id = '';
+    this.usr.nombre = '';
+    this.paquetes = [];
+    
   }
 }

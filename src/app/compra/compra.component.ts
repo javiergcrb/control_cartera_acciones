@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Operacion } from '../operacion';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription, timer } from 'rxjs';
 import { FinanceService } from '../services/finance/finance.service';
 import { HttpClient,HttpParams, HttpHeaders } from '@angular/common/http';
+import { GlobalService } from '../services/global/global.service';
+import { FirestoreService } from '../services/firestore/firestore.service';
+import { Paquete } from '../paquete';
 
 @Component({
   selector: 'app-compra',
@@ -19,28 +21,28 @@ export class CompraComponent implements OnInit {
   disable_confirm_btn = true;
 
   constructor(private router: Router, private route: ActivatedRoute,
-    private finService: FinanceService) { }
+    private finService: FinanceService, public global: GlobalService,
+    private firestore: FirestoreService) { }
 
-  public operacion:Operacion;
+  public paquete:Paquete;
 
   ngOnInit(): void {
 
-    this.operacion = new Operacion();
-    this.operacion.tipo = 1;
-    this.operacion.i_total = 0;
+    this.paquete = new Paquete();
 
     /* Temporizador */
     this.crono=timer(0,1000).subscribe((e)=>{
-      this.reloj=Date.now()
-    })
+      this.reloj=Date.now();
+    });
   }
 
   actualizar_precio(){
-    if(this.operacion.compania != undefined){
-      this.finService.get_cotizacion(this.operacion.compania).then(r=>{
+    if(this.paquete.compania != undefined){
+      if(this.paquete.n_acciones == undefined || this.paquete.n_acciones <= 1) this.paquete.n_acciones = 1;
+      this.finService.get_cotizacion(this.paquete.compania).then(r=>{
         if(r.c>0){
-          if(this.operacion.n_acciones > 0){
-            this.operacion.i_total = this.operacion.n_acciones * r.c;
+          if(this.paquete.n_acciones > 0){
+            this.paquete.precio_compra = r.c;
           this.disable_confirm_btn = false;
           }
           else{
@@ -63,13 +65,8 @@ export class CompraComponent implements OnInit {
     this.crono.unsubscribe();  
   }
 
-  public aceptar()
-  {/*
-    if(this.id==0)
-      this.firestoreService.createContacto(this.contacto);
-    else
-      this.firestoreService.UpdateContacto(this.contacto);
-*/
+  public aceptar(){
+    this.firestore.crear_paquete(this.paquete);
     this.router.navigate(['cartera']);
   }
 

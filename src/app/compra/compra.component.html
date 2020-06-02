@@ -9,9 +9,9 @@
         </mat-panel-title>
     </mat-card-title>
     <div fxLayout="column" fxLayoutAlign="center">
-        <mat-form-field><input matInput type="text" placeholder="Compañía" [(ngModel)]="operacion.compania" name="compania" (change)="actualizar_precio()"/></mat-form-field>    
-        <mat-form-field><input matInput type="number" placeholder="Número de acciones" [(ngModel)]="operacion.n_acciones" name="n_acciones" (change)="actualizar_precio()"/></mat-form-field>
-        <label type="text" name="i_total">Importe total: {{operacion.i_total | number:'.2-2'}}€</label>
+        <mat-form-field><input matInput type="text" placeholder="Compañía" [(ngModel)]="paquete.compania" name="compania" (change)="actualizar_precio()"/></mat-form-field>    
+        <mat-form-field><input matInput type="number" placeholder="Número de acciones" [(ngModel)]="paquete.n_acciones" name="n_acciones" (change)="actualizar_precio()"/></mat-form-field>
+        <label type="text" name="i_total">Importe total: {{paquete.precio_compra * paquete.n_acciones | number:'.2-2'}}€</label>
         <br/>
         <label type="text" name="fecha">Fecha de la operación: {{reloj | date:'yyyy-MM-dd HH:mm:ss'}}</label>
         <!--mat-form-field>

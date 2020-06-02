@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription, timer } from 'rxjs';
-import { Operacion } from '../operacion';
 import { GlobalService } from '../services/global/global.service';
 import { MatListOption } from '@angular/material/list';
 import { Paquete } from '../paquete';
 import { FinanceService } from '../services/finance/finance.service';
+import { FirestoreService } from '../services/firestore/firestore.service';
 
 @Component({
   selector: 'app-venta',
@@ -14,23 +14,19 @@ import { FinanceService } from '../services/finance/finance.service';
 })
 export class VentaComponent implements OnInit {
 
-  acciones = this.global.acciones;
+  acciones = this.global.paquetes;
   paquete_seleccionado=[];
+  importe: number;
 
   disable_confirm_btn = true;
 
   reloj:number=0;
   crono:Subscription;
 
-  public operacion:Operacion;
-
   constructor(private router: Router, private route: ActivatedRoute, public global: GlobalService,
-    private finService: FinanceService) { }
+    private finService: FinanceService, private firestore: FirestoreService) { }
 
   ngOnInit(): void {
-
-    this.operacion = new Operacion();
-    this.operacion.tipo = 2;
 
     /* Temporizador */
     this.crono=timer(0,1000).subscribe((e)=>{
@@ -44,12 +40,9 @@ export class VentaComponent implements OnInit {
   }
 
   public aceptar()
-  {/*
-    if(this.id==0)
-      this.firestoreService.createContacto(this.contacto);
-    else
-      this.firestoreService.UpdateContacto(this.contacto);
-*/
+  {
+    console.log(this.paquete_seleccionado[0].id)
+    this.firestore.del_paquete(this.paquete_seleccionado[0].id);
     this.router.navigate(['cartera']);
   }
 
@@ -59,16 +52,16 @@ export class VentaComponent implements OnInit {
   }
 
   public actualizarPaquete(a){
-    console.log(this.paquete_seleccionado[0].id);
+    //console.log(this.paquete_seleccionado[0].id);
     this.comprobar_venta();
   }
 
   public comprobar_venta(){
-    if(this.paquete_seleccionado[0] != undefined){
+    if(this.paquete_seleccionado[0] != undefined && this.importe != undefined){
       this.finService.get_cotizacion(this.paquete_seleccionado[0].compania).then(r=>{
-        if(this.operacion.i_total == undefined || this.operacion.i_total > this.paquete_seleccionado[0].n_acciones * r.c){
+        if(this.importe > this.paquete_seleccionado[0].n_acciones * r.c){
           this.disable_confirm_btn = true;
-          alert("No se puede vender un paquete a mayor precio que la coticación actual");
+          alert("No se puede vender un paquete a mayor precio que la cotización actual");
         }
         else{
           this.disable_confirm_btn = false;
@@ -76,5 +69,4 @@ export class VentaComponent implements OnInit {
       })
     }
   }
-
 }
