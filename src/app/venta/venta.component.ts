@@ -41,7 +41,7 @@ export class VentaComponent implements OnInit {
 
   public aceptar()
   {
-    console.log(this.paquete_seleccionado[0].id)
+    //console.log(this.paquete_seleccionado[0].id)
     this.firestore.del_paquete(this.paquete_seleccionado[0].id);
     this.router.navigate(['cartera']);
   }
@@ -51,9 +51,11 @@ export class VentaComponent implements OnInit {
     this.router.navigate(['cartera']);
   }
 
-  public actualizarPaquete(a){
-    //console.log(this.paquete_seleccionado[0].id);
-    this.comprobar_venta();
+  public actualizarPaquete(){
+    this.finService.get_cotizacion(this.paquete_seleccionado[0].compania).then(r =>{
+      this.importe = +((r.c * this.paquete_seleccionado[0].n_acciones).toFixed(2));
+      this.disable_confirm_btn = false;
+    });
   }
 
   public comprobar_venta(){
