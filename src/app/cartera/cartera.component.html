@@ -3,26 +3,31 @@
     <ng-container matColumnDef="nombre">
         <th mat-header-cell *matHeaderCellDef>Compañía</th>
         <td mat-cell *matCellDef="let element"> {{element.compania}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
     <ng-container matColumnDef="nacciones">
         <th mat-header-cell *matHeaderCellDef>En cartera</th>
         <td mat-cell *matCellDef="let element"> {{element.n_acciones}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
     <ng-container matColumnDef="pcompra">
         <th mat-header-cell *matHeaderCellDef>Precio unitario compra</th>
         <td mat-cell *matCellDef="let element"> {{element.precio_compra | number:'.2-2'}}€ </td>
+        <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
     <ng-container matColumnDef="pventa">
         <th mat-header-cell *matHeaderCellDef>Precio unitario actual</th>
         <td mat-cell *matCellDef="let element"> {{element.precio_venta | number:'.2-2'}}€ </td>
+        <td mat-footer-cell *matFooterCellDef> Total: </td>
     </ng-container>
     <ng-container matColumnDef="rentabilidad">
         <th mat-header-cell *matHeaderCellDef>Rentabilidad</th>
         <td mat-cell *matCellDef="let element" [ngClass]="element.precio_venta >= element.precio_compra ? 'positive' : 'negative'"> {{element.n_acciones*(element.precio_venta - element.precio_compra) | number:'.2-2'}}€ </td>
+        <td mat-footer-cell *matFooterCellDef> {{rentabilidad_total | number:'.2-2'}}€ </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let myRowData; columns: displayedColumns"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
 </table>
 </div>
 <br/>
-<label>Rentabilidad total: {{rentabilidad_total | number:'.2-2'}}€</label>
